@@ -45,6 +45,7 @@ MergeFiles <- function() {
 
 # Writes a tidy data file form a merged data frame
 WriteTidyData <- function(df) {
+  require(reshape2)
   mdf <- melt(df, id.vars = c('subject', 'activity'))
   tdf <- dcast(mdf, subject + activity ~ variable, mean)
   write.table(tdf, 'tidy_data.txt')
